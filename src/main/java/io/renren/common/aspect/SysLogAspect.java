@@ -23,7 +23,7 @@ import java.util.Date;
 
 /**
  * 系统日志，切面处理类
- * 
+ *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2017年3月8日 上午11:07:35
@@ -33,10 +33,10 @@ import java.util.Date;
 public class SysLogAspect {
 	@Autowired
 	private SysLogService sysLogService;
-	
+
 	@Pointcut("@annotation(io.renren.common.annotation.SysLog)")
-	public void logPointCut() { 
-		
+	public void logPointCut() {
+
 	}
 
 	@Around("logPointCut()")

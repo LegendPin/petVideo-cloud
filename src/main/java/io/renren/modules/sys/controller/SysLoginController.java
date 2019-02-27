@@ -24,7 +24,7 @@ import java.util.Map;
 
 /**
  * 登录相关
- * 
+ *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2016年11月10日 下午1:15:31
@@ -59,10 +59,10 @@ public class SysLoginController extends AbstractController {
 	 */
 	@PostMapping("/sys/login")
 	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {
-		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
-		if(!captcha){
-			return R.error("验证码不正确");
-		}
+//		boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
+//		if(!captcha){
+//			return R.error("验证码不正确");
+//		}
 
 		//用户信息
 		SysUserEntity user = sysUserService.queryByUserName(form.getUsername());
@@ -73,9 +73,9 @@ public class SysLoginController extends AbstractController {
 		}
 
 		//账号锁定
-		if(user.getStatus() == 0){
-			return R.error("账号已被锁定,请联系管理员");
-		}
+//		if(user.getStatus() == 0){
+//			return R.error("账号已被锁定,请联系管理员");
+//		}
 
 		//生成token，并保存到数据库
 		R r = sysUserTokenService.createToken(user.getUserId());
@@ -91,5 +91,5 @@ public class SysLoginController extends AbstractController {
 		sysUserTokenService.logout(getUserId());
 		return R.ok();
 	}
-	
+
 }
