@@ -1,8 +1,11 @@
 package io.renren.modules.manage.dao;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import io.renren.modules.manage.entity.VideoInfoEntity;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 
@@ -13,5 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface VideoInfoDao extends BaseMapper<VideoInfoEntity> {
-	
+
+    List<VideoInfoEntity> getVideoList(Page<VideoInfoEntity> page, VideoInfoEntity info);
 }

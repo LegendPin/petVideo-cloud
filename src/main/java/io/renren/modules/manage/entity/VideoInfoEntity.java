@@ -15,7 +15,7 @@ import java.util.Date;
  * @date 2019-02-27 11:03:05
  */
 @TableName("t_video_info")
-public class VideoInfoEntity implements Serializable {
+public class VideoInfoEntity extends PaginationEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

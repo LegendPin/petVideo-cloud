@@ -63,7 +63,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
         }
 
         return executeLogin(request, response);
-    }
+}
 
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {

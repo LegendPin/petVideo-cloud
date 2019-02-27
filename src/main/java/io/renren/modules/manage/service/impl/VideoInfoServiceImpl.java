@@ -1,6 +1,8 @@
 package io.renren.modules.manage.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -24,6 +26,13 @@ public class VideoInfoServiceImpl extends ServiceImpl<VideoInfoDao, VideoInfoEnt
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public Page<VideoInfoEntity> getVideoList(VideoInfoEntity info) {
+        Page<VideoInfoEntity> page = new Page<>(info.getCurrent(), info.getSize());
+        List<VideoInfoEntity> rList = this.baseMapper.getVideoList(page, info);
+        return page.setRecords(rList);
     }
 
 }

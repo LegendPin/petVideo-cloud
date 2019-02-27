@@ -1,5 +1,6 @@
 package io.renren.modules.manage.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.manage.entity.VideoInfoEntity;
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface VideoInfoService extends IService<VideoInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    Page<VideoInfoEntity> getVideoList(VideoInfoEntity info);
 }
 

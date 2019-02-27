@@ -20,7 +20,7 @@ public class UploadUtils {
         //获取文件后缀
         String suffix = filename.substring(filename.lastIndexOf("."));
         tempname += suffix;
-        //String retPath = "/renren-fast/static/"+ identity +"/" + tempname;
+
         //获取绝对路径
         File tempFile = new File(basePath);
         String absFilePath = tempFile.getAbsolutePath() + "/" + tempname;
@@ -39,6 +39,8 @@ public class UploadUtils {
                 desFile.createNewFile();
             }
             //储存文件
+            file.transferTo(desFile);
+
             return basePath+tempname;            //返回文件路径URL,不带盘符
         } catch (IllegalStateException | IOException e) {
             e.printStackTrace();

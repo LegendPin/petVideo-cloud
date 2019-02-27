@@ -18,6 +18,11 @@
         <result property="createTime" column="create_time"/>
         <result property="videoLength" column="video_length"/>
     </resultMap>
-
+    <select id="getVideoList" parameterType="io.renren.modules.manage.entity.VideoInfoEntity"
+            resultType="io.renren.modules.manage.entity.VideoInfoEntity">
+        select t.*
+        from t_video_info t
+        order by t.create_time desc
+    </select>
 
 </mapper>
