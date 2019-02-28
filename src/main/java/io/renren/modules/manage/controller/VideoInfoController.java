@@ -49,7 +49,6 @@ public class VideoInfoController extends AbstractController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("manage:videoinfo:info")
     public R info(@PathVariable("id") Integer id){
 			VideoInfoEntity videoInfo = videoInfoService.selectById(id);
 
