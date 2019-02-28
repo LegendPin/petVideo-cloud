@@ -22,6 +22,10 @@
             resultType="io.renren.modules.manage.entity.VideoInfoEntity">
         select t.*
         from t_video_info t
+        where 1=1
+        <if test="type !=null and type !='' and type != 0">
+            and t.type=#{type}
+        </if>
         order by t.create_time desc
     </select>
 
