@@ -8,19 +8,19 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 
-import io.renren.modules.manage.dao.PecommentDao;
-import io.renren.modules.manage.entity.PecommentEntity;
-import io.renren.modules.manage.service.PecommentService;
+import io.renren.modules.manage.dao.PetCommentDao;
+import io.renren.modules.manage.entity.PetCommentEntity;
+import io.renren.modules.manage.service.PetCommentService;
 
 
-@Service("pecommentService")
-public class PecommentServiceImpl extends ServiceImpl<PecommentDao, PecommentEntity> implements PecommentService {
+@Service("petCommentService")
+public class PetCommentServiceImpl extends ServiceImpl<PetCommentDao, PetCommentEntity> implements PetCommentService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        Page<PecommentEntity> page = this.selectPage(
-                new Query<PecommentEntity>(params).getPage(),
-                new EntityWrapper<PecommentEntity>()
+        Page<PetCommentEntity> page = this.selectPage(
+                new Query<PetCommentEntity>(params).getPage(),
+                new EntityWrapper<PetCommentEntity>()
         );
 
         return new PageUtils(page);

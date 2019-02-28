@@ -2,6 +2,7 @@ package io.renren.modules.manage.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +15,7 @@ import java.util.Date;
  * @date 2019-02-27 11:03:05
  */
 @TableName("t_pet_info")
-public class PeinfoEntity implements Serializable {
+public class PetInfoEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -45,6 +46,7 @@ public class PeinfoEntity implements Serializable {
 	/**
 	 * 出生日期
 	 */
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	/**
 	 * 电话号码

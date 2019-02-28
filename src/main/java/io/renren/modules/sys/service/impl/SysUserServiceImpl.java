@@ -7,6 +7,8 @@ import io.renren.common.exception.RRException;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
+import io.renren.modules.manage.dao.PetInfoDao;
+import io.renren.modules.manage.entity.PetInfoEntity;
 import io.renren.modules.sys.dao.SysUserDao;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.service.SysRoleService;
@@ -36,6 +38,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	private SysUserRoleService sysUserRoleService;
 	@Autowired
 	private SysRoleService sysRoleService;
+	@Autowired
+    private PetInfoDao petinfoDao;
 
 	@Override
 	public PageUtils queryPage(Map<String, Object> params) {
@@ -76,6 +80,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		user.setPassword(new Sha256Hash(user.getPassword(), salt).toHex());
 		user.setSalt(salt);
 		this.insert(user);
+
+		//初始化对应宠物表
+        PetInfoEntity info = new PetInfoEntity();
+        info.setUserId(user.getUserId().intValue());
+        info.setCreateTime(new Date());
+        petinfoDao.insert(info);
 
 		//检查角色是否越权
 		//checkRole(user);

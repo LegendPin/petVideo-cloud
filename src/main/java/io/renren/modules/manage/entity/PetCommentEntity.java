@@ -14,7 +14,7 @@ import java.util.Date;
  * @date 2019-02-27 11:03:05
  */
 @TableName("t_pet_comment")
-public class PecommentEntity implements Serializable {
+public class PetCommentEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

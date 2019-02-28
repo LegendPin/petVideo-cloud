@@ -8,19 +8,19 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 
-import io.renren.modules.manage.dao.PeinfoDao;
-import io.renren.modules.manage.entity.PeinfoEntity;
-import io.renren.modules.manage.service.PeinfoService;
+import io.renren.modules.manage.dao.PetInfoDao;
+import io.renren.modules.manage.entity.PetInfoEntity;
+import io.renren.modules.manage.service.PetInfoService;
 
 
-@Service("peinfoService")
-public class PeinfoServiceImpl extends ServiceImpl<PeinfoDao, PeinfoEntity> implements PeinfoService {
+@Service("petInfoService")
+public class PetInfoServiceImpl extends ServiceImpl<PetInfoDao, PetInfoEntity> implements PetInfoService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        Page<PeinfoEntity> page = this.selectPage(
-                new Query<PeinfoEntity>(params).getPage(),
-                new EntityWrapper<PeinfoEntity>()
+        Page<PetInfoEntity> page = this.selectPage(
+                new Query<PetInfoEntity>(params).getPage(),
+                new EntityWrapper<PetInfoEntity>()
         );
 
         return new PageUtils(page);

@@ -102,7 +102,7 @@ public class SysUserController extends AbstractController {
 	@PostMapping("/save")
 	public R save(@RequestBody SysUserEntity user){
 		ValidatorUtils.validateEntity(user, AddGroup.class);
-
+		user.setStatus(1);
 		user.setCreateUserId(1L);  //默认是超级管理员创建
 		sysUserService.save(user);
 
