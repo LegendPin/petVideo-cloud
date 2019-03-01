@@ -33,7 +33,7 @@ public class VideoCommentEntity implements Serializable {
 	/**
 	 * 评论用户姓名
 	 */
-	private Integer commentName;
+	private String commentName;
 	/**
 	 * 评论人头像
 	 */
@@ -86,13 +86,13 @@ public class VideoCommentEntity implements Serializable {
 	/**
 	 * 设置：评论用户姓名
 	 */
-	public void setCommentName(Integer commentName) {
+	public void setCommentName(String commentName) {
 		this.commentName = commentName;
 	}
 	/**
 	 * 获取：评论用户姓名
 	 */
-	public Integer getCommentName() {
+	public String getCommentName() {
 		return commentName;
 	}
 	/**

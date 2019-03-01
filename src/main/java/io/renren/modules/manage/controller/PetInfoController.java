@@ -95,5 +95,14 @@ public class PetInfoController extends AbstractController {
 
         return R.ok().put("info", petInfo);
     }
+    /**
+     * 通过账户ID获取当前用户的宠物信息
+     * @author: LuJie
+     **/
+    @RequestMapping("/infoByUserId")
+    public R infoByUserId(@RequestParam("userId") Integer userId){
+        PetInfoEntity petInfo = petInfoService.selectOne(new EntityWrapper<PetInfoEntity>().eq("user_id", userId));
 
+        return R.ok().put("info", petInfo);
+    }
 }

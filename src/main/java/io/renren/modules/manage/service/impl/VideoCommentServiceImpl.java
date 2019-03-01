@@ -21,6 +21,8 @@ public class VideoCommentServiceImpl extends ServiceImpl<VideoCommentDao, VideoC
         Page<VideoCommentEntity> page = this.selectPage(
                 new Query<VideoCommentEntity>(params).getPage(),
                 new EntityWrapper<VideoCommentEntity>()
+                        .eq("video_id", params.get("videoId"))
+                        .orderBy("create_time", false)
         );
 
         return new PageUtils(page);

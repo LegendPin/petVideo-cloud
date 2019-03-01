@@ -1,21 +1,21 @@
 package io.renren.modules.manage.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import io.renren.modules.manage.entity.VideoCommentEntity;
-import io.renren.modules.manage.service.VideoCommentService;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
+import io.renren.modules.manage.entity.PetInfoEntity;
+import io.renren.modules.manage.entity.VideoCommentEntity;
+import io.renren.modules.manage.service.PetInfoService;
+import io.renren.modules.manage.service.VideoCommentService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
+
+import static io.renren.common.utils.ShiroUtils.getUserId;
 
 
 /**
@@ -30,12 +30,14 @@ import io.renren.common.utils.R;
 public class VideoCommentController {
     @Autowired
     private VideoCommentService videoCommentService;
+    @Autowired
+    private PetInfoService petInfoService;
+
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("manage:videocomment:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = videoCommentService.queryPage(params);
 
@@ -87,4 +89,21 @@ public class VideoCommentController {
         return R.ok();
     }
 
+    /**
+     * 提交评论
+     */
+    @RequestMapping("/submitComment")
+    public R submitComment(@RequestBody VideoCommentEntity videoComment){
+        //获取当前登录用户信息
+        PetInfoEntity petInfo = petInfoService.selectOne(new EntityWrapper<PetInfoEntity>().eq("user_id", getUserId().intValue()));
+        if (petInfo == null){
+            return R.error(901, "未登录");
+        }
+        videoComment.setCommentUser(petInfo.getId());
+        videoComment.setCommentName(petInfo.getName());
+        videoComment.setCommentPic(petInfo.getHeadPic());
+        videoComment.setCreateTime(new Date());
+        videoCommentService.insert(videoComment);
+        return R.ok();
+    }
 }
