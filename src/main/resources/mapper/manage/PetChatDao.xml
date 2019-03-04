@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.manage.dao.PetChatDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.manage.entity.PetChatEntity" id="pechatMap">
+        <result property="id" column="id"/>
+        <result property="onePet" column="one_pet"/>
+        <result property="secondPet" column="second_pet"/>
+        <result property="isUsed" column="is_used"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+</mapper>
