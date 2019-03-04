@@ -106,8 +106,8 @@ public class PetChatController extends AbstractController {
      * @date: 2019/3/1
      **/
     @RequestMapping("/getChatUserList")
-    public R getChatUserList(){
-        List<PetChatEntity> chatList = petChatService.getChatUserList(getUserId().intValue());
+    public R getChatUserList(@RequestParam("id") Integer id){
+        List<PetChatEntity> chatList = petChatService.getChatUserList(id);
         return R.ok().put("list", chatList);
     }
 }

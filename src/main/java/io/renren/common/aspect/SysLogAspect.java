@@ -54,7 +54,7 @@ public class SysLogAspect {
 	}
 
 	private void saveSysLog(ProceedingJoinPoint joinPoint, long time) {
-		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+/*		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		Method method = signature.getMethod();
 
 		SysLogEntity sysLog = new SysLogEntity();
@@ -90,6 +90,6 @@ public class SysLogAspect {
 		sysLog.setTime(time);
 		sysLog.setCreateDate(new Date());
 		//保存系统日志
-		sysLogService.insert(sysLog);
+		sysLogService.insert(sysLog);*/
 	}
 }
