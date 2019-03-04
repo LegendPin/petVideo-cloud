@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.service.IService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.manage.entity.PetChatEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,10 @@ import java.util.Map;
 public interface PetChatService extends IService<PetChatEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void createChatRelation(Integer userOne, Integer userTwo);
+
+    List<PetChatEntity> getChatUserList(Integer userId);
+
 }
 

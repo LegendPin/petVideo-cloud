@@ -12,5 +12,17 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
+    <select id="judgeRelationExit" resultType="io.renren.modules.manage.entity.PetChatEntity">
+        select t.*
+        from t_pet_chat t
+        where (t.one_pet = #{userOne} and t.second_pet = #{userTwo}) or (t.one_pet = #{userTwo} and t.second_pet = #{userOne})
+    </select>
+    <select id="getChatUserList" resultType="io.renren.modules.manage.entity.PetChatEntity">
+        select t.*
+        from t_pet_chat t
+        where t.one_pet = #{userId} or t.second_pet = #{userId}
+        order by t.update_time desc
+    </select>
+
 
 </mapper>

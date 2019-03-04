@@ -3,6 +3,9 @@ package io.renren.modules.manage.dao;
 import io.renren.modules.manage.entity.PetChatEntity;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 聊天关系表
@@ -13,5 +16,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PetChatDao extends BaseMapper<PetChatEntity> {
+
+    List<PetChatEntity> judgeRelationExit(@Param("userOne") Integer userOne,@Param("userTwo") Integer userTwo);
+
+    List<PetChatEntity> getChatUserList(Integer userId);
 
 }

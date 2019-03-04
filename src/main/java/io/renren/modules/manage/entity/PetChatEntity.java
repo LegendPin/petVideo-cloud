@@ -38,6 +38,22 @@ public class PetChatEntity implements Serializable {
 	 * 更新时间
 	 */
 	private Date updateTime;
+	/**
+	 * 宠物一名称
+	 */
+	private String oneName;
+	/**
+	 * 宠物er名称
+	 */
+	private String secondName;
+	/**
+	 * 宠物一头像
+	 */
+	private String oneHead;
+	/**
+	 * 宠物二头像
+	 */
+	private String secondHead;
 
 	/**
 	 * 设置：主键
@@ -98,5 +114,37 @@ public class PetChatEntity implements Serializable {
 	 */
 	public Date getUpdateTime() {
 		return updateTime;
+	}
+
+	public String getOneName() {
+		return oneName;
+	}
+
+	public void setOneName(String oneName) {
+		this.oneName = oneName;
+	}
+
+	public String getSecondName() {
+		return secondName;
+	}
+
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
+	}
+
+	public String getOneHead() {
+		return oneHead;
+	}
+
+	public void setOneHead(String oneHead) {
+		this.oneHead = oneHead;
+	}
+
+	public String getSecondHead() {
+		return secondHead;
+	}
+
+	public void setSecondHead(String secondHead) {
+		this.secondHead = secondHead;
 	}
 }

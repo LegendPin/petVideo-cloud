@@ -1,8 +1,11 @@
 package io.renren.modules.manage.controller;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,7 +50,7 @@ public class ChatRecordController {
      */
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Integer id){
-			ChatRecordEntity charecord = chatRecordService.selectById(id);
+        ChatRecordEntity charecord = chatRecordService.selectById(id);
 
         return R.ok().put("charecord", charecord);
     }
@@ -56,8 +59,9 @@ public class ChatRecordController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody ChatRecordEntity charecord){
-			chatRecordService.insert(charecord);
+    public R save(@RequestBody ChatRecordEntity chatRecord){
+        chatRecord.setCreateTime(new Date());
+        chatRecordService.insert(chatRecord);
 
         return R.ok();
     }
@@ -67,7 +71,7 @@ public class ChatRecordController {
      */
     @RequestMapping("/update")
     public R update(@RequestBody ChatRecordEntity charecord){
-			chatRecordService.updateById(charecord);
+        chatRecordService.updateById(charecord);
 
         return R.ok();
     }
@@ -77,9 +81,22 @@ public class ChatRecordController {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Integer[] ids){
-			chatRecordService.deleteBatchIds(Arrays.asList(ids));
+        chatRecordService.deleteBatchIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+    /**
+     * 查询对应聊天关系表的聊天记录
+     * @author: LuJie
+     * @date: 2019/3/1
+     **/
+    @RequestMapping("/getChatRecordList")
+    public R getChatRecordList(@RequestParam("id") Integer id){
+        List<ChatRecordEntity> chatList = chatRecordService.selectList(
+                new EntityWrapper<ChatRecordEntity>()
+                        .eq("chat_id", id).orderBy("id", true));
+        return R.ok().put("list", chatList);
     }
 
 }
