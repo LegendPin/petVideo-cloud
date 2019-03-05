@@ -84,6 +84,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		//初始化对应宠物表
         PetInfoEntity info = new PetInfoEntity();
         info.setUserId(user.getUserId().intValue());
+        info.setName(user.getNickName());
         info.setCreateTime(new Date());
         petinfoDao.insert(info);
 
