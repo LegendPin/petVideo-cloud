@@ -26,6 +26,9 @@
         <if test="type !=null and type !='' and type != 0">
             and t.type=#{type}
         </if>
+        <if test="petId !=null and petId !='' and petId != 0">
+            and t.pet_id=#{petId}
+        </if>
         order by t.create_time desc
     </select>
 

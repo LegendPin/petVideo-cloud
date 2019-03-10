@@ -1,23 +1,20 @@
 package io.renren.modules.manage.controller;
 
-import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Map;
-
 import io.renren.common.exception.RRException;
+import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.R;
 import io.renren.common.utils.UploadUtils;
+import io.renren.modules.manage.entity.VideoInfoEntity;
+import io.renren.modules.manage.service.VideoInfoService;
 import io.renren.modules.sys.controller.AbstractController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
-
-import io.renren.modules.manage.entity.VideoInfoEntity;
-import io.renren.modules.manage.service.VideoInfoService;
-import io.renren.common.utils.PageUtils;
-import io.renren.common.utils.R;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
 
 
 /**
@@ -71,7 +68,6 @@ public class VideoInfoController extends AbstractController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("manage:videoinfo:update")
     public R update(@RequestBody VideoInfoEntity videoInfo){
 			videoInfoService.updateById(videoInfo);
 
@@ -82,7 +78,6 @@ public class VideoInfoController extends AbstractController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("manage:videoinfo:delete")
     public R delete(@RequestBody Integer[] ids){
 			videoInfoService.deleteBatchIds(Arrays.asList(ids));
 
