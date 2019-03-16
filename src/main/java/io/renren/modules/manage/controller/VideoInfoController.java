@@ -1,10 +1,13 @@
 package io.renren.modules.manage.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import io.renren.common.exception.RRException;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.R;
 import io.renren.common.utils.UploadUtils;
+import io.renren.modules.manage.entity.PlayRecordEntity;
 import io.renren.modules.manage.entity.VideoInfoEntity;
+import io.renren.modules.manage.service.PlayRecordService;
 import io.renren.modules.manage.service.VideoInfoService;
 import io.renren.modules.sys.controller.AbstractController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 
@@ -29,7 +33,8 @@ import java.util.Map;
 public class VideoInfoController extends AbstractController {
     @Autowired
     private VideoInfoService videoInfoService;
-
+    @Autowired
+    private PlayRecordService playRecordService;
     /**
      * 列表
      */
@@ -79,8 +84,14 @@ public class VideoInfoController extends AbstractController {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Integer[] ids){
-			videoInfoService.deleteBatchIds(Arrays.asList(ids));
-
+        videoInfoService.deleteBatchIds(Arrays.asList(ids));
+        //关联删除播放记录
+        List<PlayRecordEntity> rList = playRecordService.selectList(
+                new EntityWrapper<PlayRecordEntity>()
+                .eq("video_id", ids[0]));
+        for (int i=0;i<rList.size();i++) {
+            playRecordService.deleteById(rList.get(i).getId());
+        }
         return R.ok();
     }
 
